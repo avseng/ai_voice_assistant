@@ -1,5 +1,9 @@
 #!/bin/bash
 
+
+sudo apt-get update
+yes | sudo apt-get upgrade
+
 echo "Installing packages ............................................................"
 
 echo "Installing package: python3-pip ......................"
@@ -34,3 +38,8 @@ echo "Installing package: spidev ......................"
 yes | sudo pip3 install spidev
 echo "Installing package: git ......................"
 yes | sudo apt-get install git
+
+echo "Installing sound card: seeed ....................."
+git clone https://github.com/respeaker/seeed-voicecard.git
+cd seeed-voicecard
+sudo ./install.sh  --compat-kernel
