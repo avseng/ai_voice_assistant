@@ -5,7 +5,6 @@ sudo apt-get update
 yes | sudo apt-get upgrade
 
 echo "Installing packages ............................................................"
-
 echo "Installing package: python3-pip ......................"
 yes | sudo apt-get install python3-pip
 echo "Installing package: speechrecognition ......................"
