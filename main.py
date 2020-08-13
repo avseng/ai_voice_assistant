@@ -13,10 +13,10 @@ from pixels import Pixels
 
 r = sr.Recognizer()
 
-RESPEAKER_RATE = 16000
+RESPEAKER_RATE = 44100
 RESPEAKER_CHANNELS = 2
 RESPEAKER_WIDTH = 2
-RESPEAKER_INDEX = 2  # refer to input device id
+RESPEAKER_INDEX = 0  # refer to input device id
 CHUNK = 1024
 RECORD_SECONDS_BAK= 5
 WAVE_OUTPUT_FILENAME = "/mnt/ramdisk/output.wav"
@@ -29,6 +29,7 @@ class voice:
     def __init__(self):
         START_RECORDING = True
         self.WAVE_OUTPUT_FILENAME = "/mnt/ramdisk/output.wav"
+        pyaudio.paInputUnderflow = 1
         self.p = pyaudio.PyAudio()
         self.stream = self.p.open(
             rate=RESPEAKER_RATE,
@@ -60,7 +61,7 @@ class voice:
             return text.lower()
 
     def process(self, RECORD_SECONDS):
-        #print("START_RECORDING :: "+str(a.START_RECORDING))
+        print("START_RECORDING :: "+str(a.START_RECORDING))
         if a.START_RECORDING:
             px.wakeup()
             self.stream.start_stream()
@@ -96,7 +97,7 @@ while True:
     a.process(3)
     text = a.voice_command_processor()
     #os.remove(WAVE_OUTPUT_FILENAME)
-    if 'Gideon' in text or 'gideon' in text:
+    if 'pixel' in text or 'Pixel' in text:
         px.wakeup()
         px.think()
         valib.audio_playback('how can i help you')
