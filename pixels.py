@@ -125,26 +125,3 @@ class Pixels:
             self.dev.set_pixel(i, int(colors[3*i]), int(colors[3*i + 1]), int(colors[3*i + 2]))
 
         self.dev.show()
-
-
-#pixels = Pixels()
-
-
-#if __name__ == '__main__':
-#    while True:
-
-#        try:
-#            pixels.wakeup()
-#            time.sleep(3)
-#            pixels.think()
-#            time.sleep(3)
-#            pixels.speak()
-#            time.sleep(3)
-#            pixels.off()
-#            time.sleep(3)
-#        except KeyboardInterrupt:
-#            break
-
-
-#    pixels.off()
-#    time.sleep(1)
