@@ -45,7 +45,7 @@ class APA102:
     zeroes to data-in. The LED then accepts the next correct 32 bit LED
     frame (with color information) as its new color setting.
 
-    After having received the 32 bit color frame, the LED changes color,
+    After having received the 32 bit color frame, the LED changes color ,
     and then resumes to just copying data-in to data-out.
 
     The really clever bit is this: While receiving the 32 bit LED frame,
