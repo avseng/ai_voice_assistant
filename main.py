@@ -10,7 +10,6 @@ import valib
 from pixels import Pixels
 
 
-
 r = sr.Recognizer()
 
 RESPEAKER_RATE = 44100
