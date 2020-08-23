@@ -8,8 +8,9 @@ import wikipedia
 import urllib.request
 import subprocess
 
-
-
+"""
+Getting weather report from weather.com
+"""
 def weatherReport(city): 
     weatherDetails = weathercom.getCityWeatherDetails(city) 
     humidity =json.loads(weatherDetails)["vt1observation"]["humidity"] 
@@ -18,8 +19,11 @@ def weatherReport(city):
     return humidity, temp, phrase
 
 
-
-
+"""
+Perform search operation
+if the content reffer any person or group, the it will check in wikipedia
+otherwise it will search in google.
+"""
 def google_search(search_text):
     translator = Translator()
     result = ''
@@ -68,8 +72,9 @@ def google_search(search_text):
 
 
 
-
-
+"""
+get the current date and time.
+"""
 def current_datetime(type):
     
     returndata = ''
@@ -136,7 +141,9 @@ def current_datetime(type):
     return returndata
 
 
-
+"""
+Reboot raspberry pi.
+"""
 def reboot_server():
     command = "/usr/bin/sudo /sbin/shutdown -r now"
     process = subprocess.Popen(command.split(), stdout=subprocess.PIPE)
