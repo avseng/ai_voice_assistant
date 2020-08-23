@@ -93,7 +93,10 @@ class voice:
 
 
 px = Pixels()  # Initializing the Pixel class for RE-SPEAKER PiHAT LED.
-px.off()       # Make LED off, in case it is ON for some reason.
+px.wakeup()    # Turn on LED for notification that the voice assistant service is starting
+time.sleep(2)  # Wait for 2 sec
+px.off()       # Make LED off.
+
 a = voice()    # Initializing the voice class.
 
 """
