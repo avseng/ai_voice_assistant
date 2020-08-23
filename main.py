@@ -22,9 +22,11 @@ recognized_text = ''                    # Global variable for storing  audio con
 
 class voice:
     """
+    ***
     __init__ method will create pyaudio stream object
     for the entire session. This stream will be used
     every time for voice detection from microphone.
+    ***
     """
     def __init__(self):
         self.WAVE_OUTPUT_FILENAME = "/mnt/ramdisk/output.wav"
@@ -38,9 +40,11 @@ class voice:
             frames_per_buffer=CHUNK)
 
     """
+    ***
     process() method reads data from pyaudio stream for given duration.
     After read, it creates audio frame and save it to .wav file.
     it generates new WAV file every time it gets called.
+    ***
     """
     def process(self, RECORD_SECONDS):
         frames = []
@@ -58,9 +62,11 @@ class voice:
         return out_filename
 
     """
+    ****
     voice_command_processor() method reads data from .wav file and convert into text.
     it is using speech_recognition library and recognize_google option to convert speech 
     into text.
+    ****
     """
     def voice_command_processor(self, filename):
         global recognized_text
@@ -87,9 +93,11 @@ class voice:
 
 
 px = Pixels()  # Initializing the Pixel class for RE-SPEAKER PiHAT LED.
+px.off()       # Make LED off, in case it is ON for some reason.
 a = voice()    # Initializing the voice class.
 
 """
+***
 Infinite loop:
     1. Reading microphone for 3 sec and generation .wav file.
     2. Creating thread with voice_command_processor() method for converting speech to text.
@@ -103,29 +111,31 @@ Infinite loop:
         f. Process the text using process_text() method from response.py.
         g. once the processing done, it will remove all the files from the output directory.
         f. turn off the LED.
+***
 """
-while True:
-    file_name = a.process(3)
-    # print("wake_word said :: " + recognized_text)
-    if "Gideon" in recognized_text:
-        print("wake word detected...")
-        recognized_text = ''
-        px.wakeup()
-        valib.audio_playback('how can i help you')
-        time.sleep(0.5)
-        command_file_name = a.process(5)
-        a.voice_command_processor(command_file_name)
-        print("you said :: " + recognized_text)
-        px.think()
-        status = response.process_text(recognized_text, a)
-        while status != 'done':
-            pass
+if __name__ == '__main__':
+    while True:
+        file_name = a.process(3)
+        # print("wake_word said :: " + recognized_text)
+        if "Gideon" in recognized_text:
+            print("wake word detected...")
+            recognized_text = ''
+            px.wakeup()
+            valib.audio_playback('how can i help you')
+            time.sleep(0.5)
+            command_file_name = a.process(5)
+            a.voice_command_processor(command_file_name)
+            print("you said :: " + recognized_text)
+            px.think()
+            status = response.process_text(recognized_text, a)
+            while status != 'done':
+                pass
 
-        files = glob.glob(os.path.join(WAVE_OUTPUT_FILEPATH + '*'))
-        for file in files:
-            os.remove(file)
-        recognized_text = ''
-        px.off()
-    else:
-        t1 = threading.Thread(target=a.voice_command_processor, args=(file_name,))
-        t1.start()
+            files = glob.glob(os.path.join(WAVE_OUTPUT_FILEPATH + '*'))
+            for file in files:
+                os.remove(file)
+            recognized_text = ''
+            px.off()
+        else:
+            t1 = threading.Thread(target=a.voice_command_processor, args=(file_name,))
+            t1.start()
