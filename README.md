@@ -118,6 +118,15 @@ input device index number.
 Update the RESPEAKER_INDEX value with exact input device index number.
 
 
+7. Add launcher.sh file to crontab
+*****************************************************************************************************
+type below command
+
+      contab -e
+add below line to at the end of the file and save.
+
+      @reboot nohup bash /home/pi/ai_voice_assistant/launcher.sh &
+      
 
 7. Update the microphone index number to main.py
 *****************************************************************************************************
