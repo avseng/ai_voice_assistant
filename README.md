@@ -1,3 +1,4 @@
+*****************************************************************************************************
 1. Creating a RAM Disk in raspberry pi. This will help to increase the longsivity of micro sd card.
    we will use this ramdisk to store temp files created by the voice assistant. This file will be
    rempved after reboot.
@@ -10,25 +11,25 @@
     f. sudo mount -a
     g. df -h
     
-    
+*****************************************************************************************************    
 2. Install git 
 *****************************************************************************************************
     sudo apt-get install git
     
     
-
+*****************************************************************************************************
 3. Clone the git repository
 *****************************************************************************************************
     git clone https://github.com/avseng/ai_voice_assistant.git
     
-    
+*****************************************************************************************************    
 4. Run setup.sh to install all the pre-requisite packages and RE-SPEAKER sound card.
 *****************************************************************************************************
     cd ai_voice_assistant/
     sudo chmod u+x setup.sh 
     sudo bash setup.sh
     
-
+*****************************************************************************************************
 5. check the sound card
 *****************************************************************************************************
 a. Run below command to get the attached microphone details.
@@ -104,7 +105,7 @@ i. store the alsamixer setting to /etc/asound.state file with below command
           
 
 
-
+*****************************************************************************************************
 6. Update the microphone index number to main.py
 *****************************************************************************************************          
     cd ai_voice_assistant/
@@ -117,7 +118,7 @@ input device index number.
     
 Update the RESPEAKER_INDEX value with exact input device index number.
 
-
+*****************************************************************************************************
 7. Add launcher.sh file to crontab
 *****************************************************************************************************
 type below command
@@ -127,7 +128,7 @@ add below line to at the end of the file and save.
 
       @reboot nohup bash /home/pi/ai_voice_assistant/launcher.sh &
       
-
+*****************************************************************************************************
 8. Update the microphone index number to main.py
 *****************************************************************************************************
 Reboot the raspberry pi.
