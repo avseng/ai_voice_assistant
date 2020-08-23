@@ -128,6 +128,6 @@ add below line to at the end of the file and save.
       @reboot nohup bash /home/pi/ai_voice_assistant/launcher.sh &
       
 
-7. Update the microphone index number to main.py
+8. Update the microphone index number to main.py
 *****************************************************************************************************
 Reboot the raspberry pi.
