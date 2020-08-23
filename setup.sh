@@ -35,8 +35,7 @@ echo "Installing package: wikipedia ......................"
 yes | sudo pip3 install wikipedia
 echo "Installing package: spidev ......................"
 yes | sudo pip3 install spidev
-echo "Installing package: git ......................"
-yes | sudo apt-get install git
+
 
 echo "Installing sound card: seeed ....................."
 git clone https://github.com/respeaker/seeed-voicecard.git
