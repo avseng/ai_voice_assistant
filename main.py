@@ -29,7 +29,6 @@ class voice:
     every time for voice detection from microphone.
     """
     def __init__(self):
-        self.WAVE_OUTPUT_FILENAME = "/mnt/ramdisk/output.wav"
         self.p = pyaudio.PyAudio()
         self.stream = self.p.open(
             rate=RESPEAKER_RATE,
