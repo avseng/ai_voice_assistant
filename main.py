@@ -125,7 +125,7 @@ if __name__ == '__main__':
         file_name = a.process(3)
         logger.info("wake_word said :: " + recognized_text)
         #print("wake_word said :: " + recognized_text)
-        if "Roxy" in recognized_text:
+        if "Gideon" in recognized_text:
             logger.info("wake word detected...")
             recognized_text = ''
             px.wakeup()
