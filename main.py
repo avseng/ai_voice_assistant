@@ -66,7 +66,7 @@ class voice:
     def voice_command_processor(self, filename):
         global recognized_text
         with sr.AudioFile(filename) as source:
-            r.adjust_for_ambient_noise(source=source, duration=0.5)
+            #r.adjust_for_ambient_noise(source=source, duration=0.5)
             wait_time = 3
             while True:
                 audio = r.record(source, duration=3)
