@@ -5,6 +5,9 @@ This file can be extended with more action.
 import valib as va
 import action as a
 import time
+import logging
+
+logger = logging.getLogger('voice assistant')
 
 
 def process_text(text, pa):
@@ -23,13 +26,13 @@ def process_text(text, pa):
         time.sleep(0.5)
         file_name = pa.process(3)
         city = pa.voice_command_processor(file_name)
-        print("City :: " + city)
+        logger.info("process_text : City :: " + city)
         try:
             humidity, temp, phrase = a.weatherReport(city)
             va.audio_playback(
                 "currently in " + city + " temperature is " + str(temp) + " degree celsius, " + "humidity is " + str(
                     humidity) + " percent and sky is " + phrase)
-            print("currently in " + city + " temperature is " + str(temp) + "degree celsius, " + "humidity is " + str(
+            logger.info("currently in " + city + " temperature is " + str(temp) + "degree celsius, " + "humidity is " + str(
                 humidity) + " percent and sky is " + phrase)
         except KeyError as e:
             va.audio_playback("sorry, i couldn't get the location")
