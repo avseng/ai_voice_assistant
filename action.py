@@ -7,6 +7,10 @@ from googletrans import Translator
 import wikipedia
 import urllib.request
 import subprocess
+import logging
+
+
+logger = logging.getLogger('voice assistant')
 
 """
 Getting weather report from weather.com
@@ -28,7 +32,7 @@ def google_search(search_text):
     translator = Translator()
     result = ''
     search_data = search_text
-    print(search_data)
+    logger.info("google_search : "+search_data)
     if "who is" in search_data or "who are" in search_data:
         search_data = search_data.split(" ")[2:]
         search_data = " ".join(search_data)
@@ -38,7 +42,7 @@ def google_search(search_text):
             pass
     else:
         url = "https://www.google.co.in/search?q="+search_data
-        print(url)
+        logger.info("google_search : URL : "+url)
         try:
             search_result = requests.get(url).text
             soup = BeautifulSoup(search_result, 'html.parser')
@@ -67,7 +71,7 @@ def google_search(search_text):
                     break
         except Exception as e:
             pass 
-    print("Search Result ::"+result)
+    logger.info("google_search : Search Result ::"+result)
     return result
 
 
@@ -100,7 +104,7 @@ def current_datetime(type):
             suffix="AM"
     
         final_time = str(hr)+":"+min+" "+suffix
-        print(final_time)
+        logger.info("current_datetime : current time : "+final_time)
         returndata = final_time
     
     if type == "date":
@@ -135,7 +139,7 @@ def current_datetime(type):
         elif month_int == 12:
             month = "December"
         
-        print(month+" " +day+", "+year)
+        logger.info("current_datetime : today's date : "+month+" " +day+", "+year)
         returndata = month+" " +day+", "+year
     
     return returndata
